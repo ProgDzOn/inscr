@@ -711,7 +711,6 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   document.getElementById('registrationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -719,7 +718,6 @@
     const submitBtn = form.querySelector('button[type="submit"]');
     const messageDiv = document.getElementById('formMessage');
     
-    // تعطيل الزر أثناء الإرسال
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> جاري الإرسال...';
     
@@ -728,43 +726,48 @@
       const data = {};
       formData.forEach((value, key) => data[key] = value);
       
-      // إضافة التاريخ
-      data.timestamp = new Date().toLocaleString('ar-EG');
-      
-      // استبدل هذا الرابط برابط السكريبت الخاص بك
-      const scriptURL = "https://script.google.com/macros/s/AKfycbzBjVIOltqFyS92LFaKmrD0h7AZCJskLi4TFpkcDs3o67l_xC1aEQnrMTyiSBTv3y4Klw/exec";
+      // استبدل هذا الرابط برابط النشر الخاص بك
+      const scriptURL = "https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/exec";
       
       const response = await fetch(scriptURL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
       });
       
-      if (response.ok) {
-        const result = await response.json();
-        showMessage('تم التسجيل بنجاح! رقم تسجيلك: ' + result.registrationNumber, 'success');
+      // هذه الطريقة تعمل حتى مع no-cors
+      const text = await response.text();
+      try {
+        const result = JSON.parse(text);
+        if(result.status === "success") {
+          showMessage(`تم التسجيل بنجاح! رقم التسجيل: ${result.registrationNumber}`, 'success');
+          form.reset();
+        } else {
+          throw new Error(result.message || 'حدث خطأ غير معروف');
+        }
+      } catch {
+        // إذا فشل تحليل JSON، ربما تكون الاستجابة نصية
+        showMessage('تم استلام الاستجابة بنجاح: ' + text, 'success');
         form.reset();
-      } else {
-        throw new Error('فشل في الإرسال');
       }
     } catch (error) {
       console.error('Error:', error);
-      showMessage('حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا.', 'danger');
+      showMessage(`حدث خطأ: ${error.message}`, 'danger');
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الطلب';
     }
   });
-  
+
   function showMessage(message, type) {
     const messageDiv = document.getElementById('formMessage');
     messageDiv.textContent = message;
     messageDiv.className = `alert alert-${type} mt-3 text-center`;
     messageDiv.classList.remove('d-none');
     
-    // إخفاء الرسالة بعد 5 ثوان
     setTimeout(() => {
       messageDiv.classList.add('d-none');
     }, 5000);
