@@ -2,94 +2,699 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>نموذج التسجيل - دورة Delphi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دورات برمجة متكاملة - Delphi | Access | Excel | SQL</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2ecc71;
+      --secondary-color: #3498db;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+    }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 0;
+    }
+    .nav-pills .nav-link.active {
+      background-color: var(--primary-color);
+    }
+    .course-card {
+      transition: all 0.3s ease;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    .course-card .card-header {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: bold;
+    }
+    .price-tag {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    .benefit-item {
+      position: relative;
+      padding-right: 30px;
+      margin-bottom: 15px;
+    }
+    .benefit-item:before {
+      content: "✓";
+      position: absolute;
+      right: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    .form-section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-top: 5px solid var(--primary-color);
+    }
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    .guarantee-badge {
+      background-color: #f39c12;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .testimonial-card {
+      border-left: 4px solid var(--primary-color);
+    }
+    footer {
+      background-color: var(--dark-color);
+    }
+    .social-icon {
+      font-size: 1.5rem;
+      margin: 0 10px;
+      color: var(--light-color);
+      transition: all 0.3s;
+    }
+    .social-icon:hover {
+      color: var(--primary-color);
+      transform: scale(1.2);
+    }
+  </style>
 </head>
-<body style="background: #f8f9fa; font-family: 'Cairo', sans-serif;">
+<body>
 
-<div class="container">
-  <div class="form-section bg-white p-4 mt-5 rounded shadow">
-    <h3 class="text-center mb-4">نموذج التسجيل في دورة Delphi + Access + SQL</h3>
-    <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbyauCL6QG45N4Wc43iBGG7CAiCcB1z33JpamfJHDUtlWALUYq9FC8ZEgri5-EJp9RdnZA/exec" method="POST" onsubmit="return validateForm();">
-
-      <div class="mb-3">
-        <label class="form-label">الاسم الكامل</label>
-        <input type="text" name="name" class="form-control" required>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">البريد الإلكتروني</label>
-        <input type="email" name="email" class="form-control" required>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">رقم الهاتف</label>
-        <input type="text" name="phone" class="form-control" required>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">العمر</label>
-        <input type="number" name="age" class="form-control">
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">المدينة</label>
-        <input type="text" name="city" class="form-control">
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">نوع الدورة</label>
-        <select name="course" class="form-select" required>
-          <option value="فيديوهات مسجلة">فيديوهات مسجلة</option>
-          <option value="دورة مباشرة + دعم">دورة مباشرة + دعم</option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">الولاية (اختياري)</label>
-        <select name="wilaya" class="form-select">
-          <option value="">اختر ولايتك</option>
-          <option>01 - أدرار</option>
-          <option>02 - الشلف</option>
-          <option>16 - الجزائر</option>
-          <option>19 - سطيف</option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">الكود السري</label>
-        <input type="password" id="secret" class="form-control" required>
-        <div id="code-error" class="text-danger mt-1 d-none">❌ الكود غير صحيح</div>
-      </div>
-
-      <div class="text-center">
-        <button type="submit" class="btn btn-success">سجّل الآن</button>
-      </div>
-    </form>
-    <div id="success-message" class="alert alert-success mt-3 text-center d-none">
-      ✅ تم التسجيل بنجاح!
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-laptop-code me-2"></i>أكاديمية البرمجة
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#home">الرئيسية</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#courses">الدورات</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#register">التسجيل</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">اتصل بنا</a>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
-<footer class="text-center mt-5 p-3 bg-dark text-white">
-  للتواصل: 2136xxxxxxxx | البريد: example@email.com
+<!-- Hero Section -->
+<section id="home" class="hero-section text-center">
+  <div class="container">
+    <h1 class="display-3 fw-bold mb-4">احترف برمجة الأنظمة الإدارية من الصفر</h1>
+    <p class="lead mb-5">دورات متكاملة في Delphi و Access و Excel و SQL لبناء أنظمة محترفة</p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="#register" class="btn btn-primary btn-lg px-4">
+        <i class="fas fa-user-plus me-2"></i>سجل الآن
+      </a>
+      <a href="#courses" class="btn btn-outline-light btn-lg px-4">
+        <i class="fas fa-book-open me-2"></i>استعرض الدورات
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Courses Section -->
+<section id="courses" class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">دوراتنا التدريبية</h2>
+      <p class="lead text-muted">اختر الدورة التي تناسب احتياجاتك</p>
+    </div>
+    
+    <ul class="nav nav-pills mb-4 justify-content-center" id="courses-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="all-tab" data-bs-toggle="pill" data-bs-target="#all" type="button">الكل</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="delphi-tab" data-bs-toggle="pill" data-bs-target="#delphi" type="button">Delphi</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="database-tab" data-bs-toggle="pill" data-bs-target="#database" type="button">قواعد البيانات</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="office-tab" data-bs-toggle="pill" data-bs-target="#office" type="button">أوفيس</button>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="courses-tabContent">
+      <div class="tab-pane fade show active" id="all" role="tabpanel">
+        <div class="row g-4">
+          <!-- Delphi Course -->
+          <div class="col-md-6 col-lg-3">
+            <div class="course-card h-100">
+              <div class="card-header text-center py-3">
+                <h5 class="mb-0">دورة Delphi</h5>
+              </div>
+              <div class="card-body">
+                <div class="price-tag text-center mb-3">20,000 د.ج</div>
+                <ul class="list-unstyled">
+                  <li class="benefit-item">برمجة أنظمة إدارية متكاملة</li>
+                  <li class="benefit-item">تصميم واجهات مستخدم احترافية</li>
+                  <li class="benefit-item">ربط مع قواعد البيانات</li>
+                  <li class="benefit-item">إنشاء التقارير والفواتير</li>
+                </ul>
+              </div>
+              <div class="card-footer bg-transparent text-center">
+                <a href="#register" class="btn btn-primary w-100">سجل الآن</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- SQL Course -->
+          <div class="col-md-6 col-lg-3">
+            <div class="course-card h-100">
+              <div class="card-header text-center py-3">
+                <h5 class="mb-0">دورة SQL</h5>
+              </div>
+              <div class="card-body">
+                <div class="price-tag text-center mb-3">20,000 د.ج</div>
+                <ul class="list-unstyled">
+                  <li class="benefit-item">لغة SQL من الأساسيات إلى المتقدم</li>
+                  <li class="benefit-item">إدارة قواعد البيانات</li>
+                  <li class="benefit-item">كتابة الاستعلامات المعقدة</li>
+                  <li class="benefit-item">تحسين أداء قواعد البيانات</li>
+                </ul>
+              </div>
+              <div class="card-footer bg-transparent text-center">
+                <a href="#register" class="btn btn-primary w-100">سجل الآن</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Access Course -->
+          <div class="col-md-6 col-lg-3">
+            <div class="course-card h-100">
+              <div class="card-header text-center py-3">
+                <h5 class="mb-0">دورة Access</h5>
+              </div>
+              <div class="card-body">
+                <div class="price-tag text-center mb-3">10,000 د.ج</div>
+                <ul class="list-unstyled">
+                  <li class="benefit-item">تصميم قواعد بيانات احترافية</li>
+                  <li class="benefit-item">إنشاء النماذج والتقارير</li>
+                  <li class="benefit-item">استعلامات متقدمة</li>
+                  <li class="benefit-item">أتمتة العمليات باستخدام ماكرو</li>
+                </ul>
+              </div>
+              <div class="card-footer bg-transparent text-center">
+                <a href="#register" class="btn btn-primary w-100">سجل الآن</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Excel Course -->
+          <div class="col-md-6 col-lg-3">
+            <div class="course-card h-100">
+              <div class="card-header text-center py-3">
+                <h5 class="mb-0">دورة Excel</h5>
+              </div>
+              <div class="card-body">
+                <div class="price-tag text-center mb-3">5,000 د.ج</div>
+                <ul class="list-unstyled">
+                  <li class="benefit-item">الدوال والصيغ المتقدمة</li>
+                  <li class="benefit-item">تحليل البيانات وعرضها</li>
+                  <li class="benefit-item">لوحات التحكم</li>
+                  <li class="benefit-item">أتمتة المهام باستخدام VBA</li>
+                </ul>
+              </div>
+              <div class="card-footer bg-transparent text-center">
+                <a href="#register" class="btn btn-primary w-100">سجل الآن</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package Offer -->
+      <div class="text-center mt-5">
+        <div class="p-4 bg-white rounded-3 shadow-sm d-inline-block">
+          <h4 class="fw-bold mb-3">الباقة الشاملة بخصم 40%</h4>
+          <div class="d-flex justify-content-center align-items-center mb-2">
+            <span class="text-muted me-3 fs-5"><del>55,000 د.ج</del></span>
+            <span class="price-tag">33,000 د.ج</span>
+          </div>
+          <p class="text-muted mb-3">احصل على جميع الدورات الأربعة + مشروع متكامل + شهادة معتمدة</p>
+          <a href="#register" class="btn btn-primary px-4">
+            <i class="fas fa-gift me-2"></i>احصل على العرض
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">لماذا تختار دوراتنا؟</h2>
+      <p class="lead text-muted">مميزات تجعلنا الأفضل</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-certificate fa-2x"></i>
+          </div>
+          <h4>شهادة معتمدة</h4>
+          <p>احصل على شهادة معتمدة بعد إتمام كل دورة تثبت إتقانك للمهارات</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-headset fa-2x"></i>
+          </div>
+          <h4>دعم فني متكامل</h4>
+          <p>دعم فني مباشر لمدة 3 أشهر بعد انتهاء الدورة عبر مجموعات الواتساب</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-project-diagram fa-2x"></i>
+          </div>
+          <h4>مشاريع عملية</h4>
+          <p>تطبيق عملي على مشاريع حقيقية تشمل جميع جوانب الأنظمة الإدارية</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-file-code fa-2x"></i>
+          </div>
+          <h4>ملفات المصدر</h4>
+          <p>احصل على جميع ملفات المصدر والكود البرمجي للدورة للاستفادة منها</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-sync-alt fa-2x"></i>
+          </div>
+          <h4>تحديثات مجانية</h4>
+          <p>تحديثات مجانية لمدة عام كامل على جميع محتويات الدورة</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-hand-holding-usd fa-2x"></i>
+          </div>
+          <h4>ضمان الاسترداد</h4>
+          <p>ضمان استرداد الأموال خلال 7 أيام إذا لم تكن راضياً عن الدورة</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Registration Section -->
+<section id="register" class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="fw-bold mb-4">سجل في دوراتنا الآن</h2>
+        <p class="lead mb-4">املأ النموذج وسنتصل بك لتأكيد التسجيل وتفاصيل الدفع</p>
+        
+        <div class="bg-white p-4 rounded-3 shadow-sm mb-4">
+          <div class="d-flex align-items-center">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-3">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h5 class="mb-1">الدعم الفني</h5>
+              <p class="mb-0">0552 65 60 78</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-4 rounded-3 shadow-sm">
+          <div class="d-flex align-items-center">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-3">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h5 class="mb-1">أوقات الدعم</h5>
+              <p class="mb-0">السبت - الخميس | 8 صباحاً - 8 مساءً</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="form-section p-4">
+          <div class="guarantee-badge mb-3">
+            <i class="fas fa-shield-alt me-2"></i>ضمان استرداد الأموال خلال 7 أيام
+          </div>
+          
+          <form id="registrationForm">
+            <div class="mb-3">
+              <label class="form-label">الاسم الكامل</label>
+              <input type="text" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">البريد الإلكتروني</label>
+              <input type="email" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">رقم الهاتف</label>
+              <input type="tel" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">اختر الدورة</label>
+              <select class="form-select" required>
+                <option value="">-- اختر الدورة --</option>
+                <option value="delphi">دورة Delphi (20,000 د.ج)</option>
+                <option value="sql">دورة SQL (20,000 د.ج)</option>
+                <option value="access">دورة Access (10,000 د.ج)</option>
+                <option value="excel">دورة Excel (5,000 د.ج)</option>
+                <option value="package">الباقة الشاملة (33,000 د.ج)</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">الولاية (اختياري)</label>
+                <select name="wilaya" class="form-select">
+                    <option value="01">01 - أدرار</option>
+                    <option value="02">02 - الشلف</option>
+                    <option value="03">03 - الأغواط</option>
+                    <option value="04">04 - أم البواقي</option>
+                    <option value="05">05 - باتنة</option>
+                    <option value="06">06 - بجاية</option>
+                    <option value="07">07 - بسكرة</option>
+                    <option value="08">08 - بشار</option>
+                    <option value="09">09 - البليدة</option>
+                    <option value="10">10 - البويرة</option>
+                    <option value="11">11 - تمنراست</option>
+                    <option value="12">12 - تبسة</option>
+                    <option value="13">13 - تلمسان</option>
+                    <option value="14">14 - تيارت</option>
+                    <option value="15">15 - تيزي وزو</option>
+                    <option value="16">16 - الجزائر</option>
+                    <option value="17">17 - الجلفة</option>
+                    <option value="18">18 - جيجل</option>
+                    <option value="19">19 - سطيف</option>
+                    <option value="20">20 - سعيدة</option>
+                    <option value="21">21 - سكيكدة</option>
+                    <option value="22">22 - سيدي بلعباس</option>
+                    <option value="23">23 - عنابة</option>
+                    <option value="24">24 - قالمة</option>
+                    <option value="25">25 - قسنطينة</option>
+                    <option value="26">26 - المدية</option>
+                    <option value="27">27 - مستغانم</option>
+                    <option value="28">28 - المسيلة</option>
+                    <option value="29">29 - معسكر</option>
+                    <option value="30">30 - ورقلة</option>
+                    <option value="31">31 - وهران</option>
+                    <option value="32">32 - البيض</option>
+                    <option value="33">33 - إيليزي</option>
+                    <option value="34">34 - برج بوعريريج</option>
+                    <option value="35">35 - بومرداس</option>
+                    <option value="36">36 - الطارف</option>
+                    <option value="37">37 - تندوف</option>
+                    <option value="38">38 - تسمسيلت</option>
+                    <option value="39">39 - الوادي</option>
+                    <option value="40">40 - خنشلة</option>
+                    <option value="41">41 - سوق أهراس</option>
+                    <option value="42">42 - تيبازة</option>
+                    <option value="43">43 - ميلة</option>
+                    <option value="44">44 - عين الدفلى</option>
+                    <option value="45">45 - النعامة</option>
+                    <option value="46">46 - عين تموشنت</option>
+                    <option value="47">47 - غرداية</option>
+                    <option value="48">48 - غليزان</option>
+                 
+                </select>
+              </div>
+        
+            
+            <div class="mb-3">
+              <label class="form-label">كود الخصم (اختياري)</label>
+              <input type="text" class="form-control" placeholder="إذا كان لديك كود خصم">
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">
+              <i class="fas fa-paper-plane me-2"></i>إرسال الطلب
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">آراء متدربينا</h2>
+      <p class="lead text-muted">ماذا يقولون عن دوراتنا</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-3">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <h5 class="mb-0">أحمد</h5>
+              <small class="text-muted">طالب هندسة</small>
+            </div>
+          </div>
+          <p class="mb-0">"بعد الدورة استطعت برمجة نظام متكامل لمحل والدي ووفرت عليه أكثر من 50% من الوقت والجهد!"</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="testimonial-card p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-3">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <h5 class="mb-0">سارة</h5>
+              <small class="text-muted">خريجة علوم حاسوب</small>
+            </div>
+          </div>
+          <p class="mb-0">"الدورة غيرت مساري المهني بالكامل، الآن أعمل كمبرمج أنظمة إدارية ولدي أكثر من 5 عملاء دائمين"</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="testimonial-card p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-3">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <h5 class="mb-0">محمد</h5>
+              <small class="text-muted">صاحب مؤسسة</small>
+            </div>
+          </div>
+          <p class="mb-0">"بعد الدورة تمكنت من برمجة نظام خاص بمؤسستي ووفرت آلاف الدولارات التي كنت سأدفعها للمبرمجين"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">الأسئلة الشائعة</h2>
+      <p class="lead text-muted">إجابات على أكثر الأسئلة شيوعاً</p>
+    </div>
+    
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item mb-3 border-0 shadow-sm">
+        <h3 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+            ما هي مدة الدورة؟
+          </button>
+        </h3>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            مدة كل دورة تختلف حسب المحتوى، ولكن في المتوسط تستغرق كل دورة من 4 إلى 6 أسابيع بجلسات أسبوعية مدتها ساعتان.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item mb-3 border-0 shadow-sm">
+        <h3 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+            هل أحتاج إلى خبرة مسبقة في البرمجة؟
+          </button>
+        </h3>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            لا، دوراتنا مصممة لتناسب المبتدئين والمحترفين. نبدأ من الأساسيات ونتدرج حتى المستويات المتقدمة.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item mb-3 border-0 shadow-sm">
+        <h3 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+            كيف يمكنني الدفع؟
+          </button>
+        </h3>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            نقدم عدة خيارات للدفع: التحويل البنكي، الدفع عند التسليم (للمقيمين في الجزائر العاصمة)، أو عبر بوابات الدفع الإلكتروني.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">تواصل معنا</h2>
+      <p class="lead text-muted">نحن هنا لمساعدتك في أي استفسار</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-phone-alt fa-2x"></i>
+          </div>
+          <h4>الهاتف</h4>
+          <p class="mb-0">0552 65 60 78</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-envelope fa-2x"></i>
+          </div>
+          <h4>البريد الإلكتروني</h4>
+          <p class="mb-0">email</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 d-inline-block">
+            <i class="fas fa-map-marker-alt fa-2x"></i>
+          </div>
+          <h4>العنوان</h4>
+          <p class="mb-0">الجزائر العاصمة</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h4 class="mb-4">أكاديمية البرمجة</h4>
+        <p>نقدم دورات تدريبية متخصصة في برمجة الأنظمة الإدارية وتطبيقات قواعد البيانات منذ عام 2010.</p>
+      </div>
+      
+      <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+        <h5 class="mb-4">روابط سريعة</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#home" class="text-white text-decoration-none">الرئيسية</a></li>
+          <li class="mb-2"><a href="#courses" class="text-white text-decoration-none">الدورات</a></li>
+          <li class="mb-2"><a href="#register" class="text-white text-decoration-none">التسجيل</a></li>
+          <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">اتصل بنا</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="mb-4">الدورات</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-white text-decoration-none">دورة Delphi</a></li>
+          <li class="mb-2"><a href="#" class="text-white text-decoration-none">دورة SQL</a></li>
+          <li class="mb-2"><a href="#" class="text-white text-decoration-none">دورة Access</a></li>
+          <li class="mb-2"><a href="#" class="text-white text-decoration-none">دورة Excel</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3">
+        <h5 class="mb-4">تابعنا</h5>
+        <div class="mb-4">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+        <p>اشترك في نشرتنا البريدية ليصلك كل جديد:</p>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+          <button class="btn btn-primary" type="button">اشترك</button>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="my-4 bg-light">
+    
+    <div class="text-center">
+      <p class="mb-0">© 2025 أكاديمية البرمجة. جميع الحقوق محفوظة.</p>
+    </div>
+  </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  function validateForm() {
-    const code = document.getElementById('secret').value;
-    const error = document.getElementById('code-error');
-    if (code !== "123456") {
-      error.classList.remove('d-none');
-      return false;
-    } else {
-      error.classList.add('d-none');
-      document.getElementById('success-message').classList.remove('d-none');
-      return true;
-    }
-  }
+  // يمكن إضافة أي أكواد جافا سكريبت هنا
+  document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('شكراً لتسجيلك! سوف نتصل بك خلال 24 ساعة لتأكيد التسجيل.');
+    this.reset();
+  });
 </script>
 </body>
 </html>
-
