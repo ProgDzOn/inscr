@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل دورة Delphi + SQL</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f2f2f2;
+      font-family: 'Cairo', sans-serif;
+    }
+    .form-section {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-top: 50px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #343a40;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="form-section">
+    <h2 class="text-center mb-4">نموذج التسجيل في دورة Delphi + Access + SQL</h2>
+    <form action="https://script.google.com/macros/s/AKfycbzav6JVEzXg1JoST7sy9L7qQgGhaBpRIPsSNv9KCC4Q9BiMUfSFQwQTYZUSEbG2VEOGrw/exec" method="POST" onsubmit="showSuccess();">
+      <div class="mb-3">
+        <label class="form-label">الاسم الكامل</label>
+        <input type="text" name="name" class="form-control" placeholder="أدخل اسمك" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">رقم الهاتف</label>
+        <input type="text" name="phone" class="form-control" placeholder="07xxxxxxxx" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">نوع الدورة</label>
+        <select name="course" class="form-select" required>
+          <option value="فيديوهات مسجلة">فيديوهات مسجلة</option>
+          <option value="دورة مباشرة + دعم">دورة مباشرة + دعم</option>
+        </select>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success px-5">سجّل الآن</button>
+      </div>
+    </form>
+    <div id="success-message" class="alert alert-success mt-4 text-center d-none">
+      ✅ تم إرسال طلب التسجيل بنجاح!
+    </div>
+  </div>
+</div>
+
+<footer>
+  📞 للتواصل: 2136xxxxxxxx | ✉️ example@email.com  
+</footer>
+
+<script>
+  function showSuccess() {
+    setTimeout(() => {
+      document.getElementById("success-message").classList.remove("d-none");
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
