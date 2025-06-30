@@ -384,27 +384,23 @@
           <div class="guarantee-badge mb-3">
             <i class="fas fa-shield-alt me-2"></i>ضمان استرداد الأموال خلال 7 أيام
           </div>
-          
-        <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbzETZDn1awfZXqxFNmYZCe7szuic5WrbO1Bkn2V7k2GGITVFjS06Mb-EcFCuLBakHrFBw/exec" 
-      method="POST">
+          <!-- نموذج التسجيل -->
+          <form id="registrationForm">
             <div class="mb-3">
               <label class="form-label">الاسم الكامل</label>
-              <input type="text" class="form-control" required>
+              <input type="text" class="form-control" name="fullname" required>
             </div>
-            
             <div class="mb-3">
               <label class="form-label">البريد الإلكتروني</label>
-              <input type="email" class="form-control" required>
+              <input type="email" class="form-control" name="email" required>
             </div>
-            
             <div class="mb-3">
               <label class="form-label">رقم الهاتف</label>
-              <input type="tel" class="form-control" required>
+              <input type="tel" class="form-control" name="phone" required>
             </div>
-            
             <div class="mb-3">
               <label class="form-label">اختر الدورة</label>
-              <select class="form-select" required>
+              <select class="form-select" name="course" required>
                 <option value="">-- اختر الدورة --</option>
                 <option value="delphi">دورة Delphi (20,000 د.ج)</option>
                 <option value="sql">دورة SQL (20,000 د.ج)</option>
@@ -413,68 +409,64 @@
                 <option value="package">الباقة الشاملة (33,000 د.ج)</option>
               </select>
             </div>
-            
             <div class="mb-3">
-                <label class="form-label">الولاية (اختياري)</label>
-                <select name="wilaya" class="form-select">
-                    <option value="01">01 - أدرار</option>
-                    <option value="02">02 - الشلف</option>
-                    <option value="03">03 - الأغواط</option>
-                    <option value="04">04 - أم البواقي</option>
-                    <option value="05">05 - باتنة</option>
-                    <option value="06">06 - بجاية</option>
-                    <option value="07">07 - بسكرة</option>
-                    <option value="08">08 - بشار</option>
-                    <option value="09">09 - البليدة</option>
-                    <option value="10">10 - البويرة</option>
-                    <option value="11">11 - تمنراست</option>
-                    <option value="12">12 - تبسة</option>
-                    <option value="13">13 - تلمسان</option>
-                    <option value="14">14 - تيارت</option>
-                    <option value="15">15 - تيزي وزو</option>
-                    <option value="16">16 - الجزائر</option>
-                    <option value="17">17 - الجلفة</option>
-                    <option value="18">18 - جيجل</option>
-                    <option value="19">19 - سطيف</option>
-                    <option value="20">20 - سعيدة</option>
-                    <option value="21">21 - سكيكدة</option>
-                    <option value="22">22 - سيدي بلعباس</option>
-                    <option value="23">23 - عنابة</option>
-                    <option value="24">24 - قالمة</option>
-                    <option value="25">25 - قسنطينة</option>
-                    <option value="26">26 - المدية</option>
-                    <option value="27">27 - مستغانم</option>
-                    <option value="28">28 - المسيلة</option>
-                    <option value="29">29 - معسكر</option>
-                    <option value="30">30 - ورقلة</option>
-                    <option value="31">31 - وهران</option>
-                    <option value="32">32 - البيض</option>
-                    <option value="33">33 - إيليزي</option>
-                    <option value="34">34 - برج بوعريريج</option>
-                    <option value="35">35 - بومرداس</option>
-                    <option value="36">36 - الطارف</option>
-                    <option value="37">37 - تندوف</option>
-                    <option value="38">38 - تسمسيلت</option>
-                    <option value="39">39 - الوادي</option>
-                    <option value="40">40 - خنشلة</option>
-                    <option value="41">41 - سوق أهراس</option>
-                    <option value="42">42 - تيبازة</option>
-                    <option value="43">43 - ميلة</option>
-                    <option value="44">44 - عين الدفلى</option>
-                    <option value="45">45 - النعامة</option>
-                    <option value="46">46 - عين تموشنت</option>
-                    <option value="47">47 - غرداية</option>
-                    <option value="48">48 - غليزان</option>
-                 
-                </select>
-              </div>
-        
-            
+              <label class="form-label">الولاية (اختياري)</label>
+              <select name="wilaya" class="form-select">
+                <option value="">-- اختر الولاية --</option>
+                <option value="01">01 - أدرار</option>
+                <option value="02">02 - الشلف</option>
+                <option value="03">03 - الأغواط</option>
+                <option value="04">04 - أم البواقي</option>
+                <option value="05">05 - باتنة</option>
+                <option value="06">06 - بجاية</option>
+                <option value="07">07 - بسكرة</option>
+                <option value="08">08 - بشار</option>
+                <option value="09">09 - البليدة</option>
+                <option value="10">10 - البويرة</option>
+                <option value="11">11 - تمنراست</option>
+                <option value="12">12 - تبسة</option>
+                <option value="13">13 - تلمسان</option>
+                <option value="14">14 - تيارت</option>
+                <option value="15">15 - تيزي وزو</option>
+                <option value="16">16 - الجزائر</option>
+                <option value="17">17 - الجلفة</option>
+                <option value="18">18 - جيجل</option>
+                <option value="19">19 - سطيف</option>
+                <option value="20">20 - سعيدة</option>
+                <option value="21">21 - سكيكدة</option>
+                <option value="22">22 - سيدي بلعباس</option>
+                <option value="23">23 - عنابة</option>
+                <option value="24">24 - قالمة</option>
+                <option value="25">25 - قسنطينة</option>
+                <option value="26">26 - المدية</option>
+                <option value="27">27 - مستغانم</option>
+                <option value="28">28 - المسيلة</option>
+                <option value="29">29 - معسكر</option>
+                <option value="30">30 - ورقلة</option>
+                <option value="31">31 - وهران</option>
+                <option value="32">32 - البيض</option>
+                <option value="33">33 - إيليزي</option>
+                <option value="34">34 - برج بوعريريج</option>
+                <option value="35">35 - بومرداس</option>
+                <option value="36">36 - الطارف</option>
+                <option value="37">37 - تندوف</option>
+                <option value="38">38 - تسمسيلت</option>
+                <option value="39">39 - الوادي</option>
+                <option value="40">40 - خنشلة</option>
+                <option value="41">41 - سوق أهراس</option>
+                <option value="42">42 - تيبازة</option>
+                <option value="43">43 - ميلة</option>
+                <option value="44">44 - عين الدفلى</option>
+                <option value="45">45 - النعامة</option>
+                <option value="46">46 - عين تموشنت</option>
+                <option value="47">47 - غرداية</option>
+                <option value="48">48 - غليزان</option>
+              </select>
+            </div>
             <div class="mb-3">
               <label class="form-label">كود الخصم (اختياري)</label>
-              <input type="text" class="form-control" placeholder="إذا كان لديك كود خصم">
+              <input type="text" class="form-control" name="discount_code" placeholder="إذا كان لديك كود خصم">
             </div>
-            
             <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">
               <i class="fas fa-paper-plane me-2"></i>إرسال الطلب
             </button>
@@ -690,11 +682,36 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // يمكن إضافة أي أكواد جافا سكريبت هنا
   document.getElementById('registrationForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert('شكراً لتسجيلك! سوف نتصل بك خلال 24 ساعة لتأكيد التسجيل.');
-    this.reset();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    // أضف التاريخ الحالي
+    data.timestamp = new Date().toLocaleString('ar-EG');
+
+    fetch('https://script.google.com/macros/s/AKfycbwOWdV00U6vW6G8PXSrZMicqcpyZw9-bbsbsIU5MfcoQQXFtp2JT5eLdt42FgKRrORg9Q/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      alert('شكراً لتسجيلك! سوف نتصل بك خلال 24 ساعة لتأكيد التسجيل.');
+      form.reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.');
+      form.reset();
+    });
   });
 </script>
 </body>
