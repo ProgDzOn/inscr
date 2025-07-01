@@ -712,53 +712,50 @@
 </footer>
 
 <script>
+<script>
   document.getElementById('registrationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
     const messageDiv = document.getElementById('formMessage');
-    
+
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> جاري الإرسال...';
-    
+
     try {
       const formData = new FormData(form);
       const data = {};
       formData.forEach((value, key) => data[key] = value);
-      
-      // استبدل هذا الرابط برابط النشر الخاص بك
+
+      // ✅ استبدل بالرابط الصحيح للنشر
       const scriptURL = "https://script.google.com/macros/s/AKfycbxTfCIXzYDaNh7XrGV-BA4GjzWXnckbgilhknSaAP_OdX7r8nHs2QWCxt1pcUUznV09jw/exec";
-      
+
       const response = await fetch(scriptURL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
       });
-      
-      // هذه الطريقة تعمل حتى مع no-cors
-      const text = await response.text();
-      try {
-        const result = JSON.parse(text);
-        if(result.status === "success") {
-          showMessage(`تم التسجيل بنجاح! رقم التسجيل: ${result.registrationNumber}`, 'success');
-          form.reset();
-        } else {
-          throw new Error(result.message || 'حدث خطأ غير معروف');
-        }
-      } catch {
-        // إذا فشل تحليل JSON، ربما تكون الاستجابة نصية
-        showMessage('تم استلام الاستجابة بنجاح: ' + text, 'success');
+
+      if (!response.ok) {
+        throw new Error('فشل الاتصال بالخادم. الكود: ' + response.status);
+      }
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        showMessage(`✅ تم التسجيل بنجاح! رقم التسجيل: ${result.registrationNumber}`, 'success');
         form.reset();
+      } else {
+        throw new Error(result.message || '⚠️ حدث خطأ أثناء المعالجة');
       }
     } catch (error) {
       console.error('Error:', error);
-      showMessage(`حدث خطأ: ${error.message}`, 'danger');
+      showMessage(`❌ ${error.message}`, 'danger');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الطلب';
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> إرسال الطلب';
     }
   });
 
@@ -767,11 +764,13 @@
     messageDiv.textContent = message;
     messageDiv.className = `alert alert-${type} mt-3 text-center`;
     messageDiv.classList.remove('d-none');
-    
+
     setTimeout(() => {
       messageDiv.classList.add('d-none');
-    }, 5000);
+    }, 7000);
   }
+</script>
+
 </script>
 </body>
 </html>
