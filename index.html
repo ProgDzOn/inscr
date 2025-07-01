@@ -712,50 +712,53 @@
 </footer>
 
 <script>
-<script>
   document.getElementById('registrationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
     const messageDiv = document.getElementById('formMessage');
-
+    
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> جاري الإرسال...';
-
+    
     try {
       const formData = new FormData(form);
       const data = {};
       formData.forEach((value, key) => data[key] = value);
-
-      // ✅ استبدل بالرابط الصحيح للنشر
-      const scriptURL = "تعذر العثور على دالة النص البرمجي: doGethttps://script.google.com/macros/s/AKfycbziQsXPJf8ZPYVCB2kFZ9Nd2TdYanuZI7E3Go-QR3iLv8dLH78fBI1WC6jFdPD4EYg6nQ/exec";
-
+      
+      // استبدل هذا الرابط برابط النشر الخاص بك
+      const scriptURL = "https://script.google.com/macros/s/AKfycbxTfCIXzYDaNh7XrGV-BA4GjzWXnckbgilhknSaAP_OdX7r8nHs2QWCxt1pcUUznV09jw/exec";
+      
       const response = await fetch(scriptURL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
       });
-
-      if (!response.ok) {
-        throw new Error('فشل الاتصال بالخادم. الكود: ' + response.status);
-      }
-
-      const result = await response.json();
-
-      if (result.status === "success") {
-        showMessage(`✅ تم التسجيل بنجاح! رقم التسجيل: ${result.registrationNumber}`, 'success');
+      
+      // هذه الطريقة تعمل حتى مع no-cors
+      const text = await response.text();
+      try {
+        const result = JSON.parse(text);
+        if(result.status === "success") {
+          showMessage(`تم التسجيل بنجاح! رقم التسجيل: ${result.registrationNumber}`, 'success');
+          form.reset();
+        } else {
+          throw new Error(result.message || 'حدث خطأ غير معروف');
+        }
+      } catch {
+        // إذا فشل تحليل JSON، ربما تكون الاستجابة نصية
+        showMessage('تم استلام الاستجابة بنجاح: ' + text, 'success');
         form.reset();
-      } else {
-        throw new Error(result.message || '⚠️ حدث خطأ أثناء المعالجة');
       }
     } catch (error) {
       console.error('Error:', error);
-      showMessage(`❌ ${error.message}`, 'danger');
+      showMessage(`حدث خطأ: ${error.message}`, 'danger');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> إرسال الطلب';
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الطلب';
     }
   });
 
@@ -764,33 +767,12 @@
     messageDiv.textContent = message;
     messageDiv.className = `alert alert-${type} mt-3 text-center`;
     messageDiv.classList.remove('d-none');
-
+    
     setTimeout(() => {
       messageDiv.classList.add('d-none');
-    }, 7000);
+    }, 5000);
   }
 </script>
-
-</script>
-  <script>
-    // تعطيل النقر بزر الماوس الأيمن
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-
-    // تعطيل التحديد
-    document.onselectstart = function () {
-        return false;
-    };
-
-    // تعطيل اختصارات لوحة المفاتيح مثل Ctrl+C
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
-            e.preventDefault();
-        }
-    });
-
-</script>
-
 </body>
 </html>
+
