@@ -784,82 +784,79 @@
 <script>
   document.getElementById('registrationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
     const messageDiv = document.getElementById('formMessage');
-    
+
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> جاري الإرسال...';
-    
+
     try {
       const formData = new FormData(form);
       const data = {};
       formData.forEach((value, key) => data[key] = value);
-      
-      // استبدل هذا الرابط برابط النشر الخاص بك
+
+      // ✅ رابط Google Apps Script الذي نشرته بنجاح بصلاحيات "Anyone"
       const scriptURL = "https://script.google.com/macros/s/AKfycbxTfCIXzYDaNh7XrGV-BA4GjzWXnckbgilhknSaAP_OdX7r8nHs2QWCxt1pcUUznV09jw/exec";
-      
+
+      // 🟡 ملاحظة: لا تستخدم no-cors هنا حتى تتمكن من قراءة الرد
       const response = await fetch(scriptURL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
       });
-      
-      // هذه الطريقة تعمل حتى مع no-cors
+
       const text = await response.text();
       try {
         const result = JSON.parse(text);
-        if(result.status === "success") {
-          showMessage(`تم التسجيل بنجاح! رقم التسجيل: ${result.registrationNumber}`, 'success');
+        if (result.status === "success") {
+          showMessage(`✅ تم التسجيل بنجاح!`, 'success');
           form.reset();
         } else {
           throw new Error(result.message || 'حدث خطأ غير معروف');
         }
-      } catch {
-        // إذا فشل تحليل JSON، ربما تكون الاستجابة نصية
-        showMessage('تم استلام الاستجابة بنجاح: ' + text, 'success');
-        form.reset();
+      } catch (e) {
+        showMessage('✅ تم الإرسال، لكن لم يتم تحليل الرد بشكل صحيح.', 'success');
       }
+
     } catch (error) {
       console.error('Error:', error);
-      showMessage(`حدث خطأ: ${error.message}`, 'danger');
+      showMessage(`❌ حدث خطأ: ${error.message}`, 'danger');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>إرسال الطلب';
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> إرسال الطلب';
     }
   });
 
+  // ✅ دالة لعرض رسالة النجاح أو الخطأ
   function showMessage(message, type) {
     const messageDiv = document.getElementById('formMessage');
     messageDiv.textContent = message;
     messageDiv.className = `alert alert-${type} mt-3 text-center`;
     messageDiv.classList.remove('d-none');
-    
+
     setTimeout(() => {
       messageDiv.classList.add('d-none');
     }, 5000);
   }
+
+  // ✅ حماية إضافية (اختياري)
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+  document.onselectstart = function () {
+    return false;
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
+      e.preventDefault();
+    }
+  });
 </script>
-  <script>
-    // تعطيل النقر بزر الماوس الأيمن
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
 
-    // تعطيل التحديد
-    document.onselectstart = function () {
-        return false;
-    };
-
-    // تعطيل اختصارات لوحة المفاتيح مثل Ctrl+C
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
-            e.preventDefault();
-        }
-    });
 
 </script>
 </body>
