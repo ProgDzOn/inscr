@@ -780,30 +780,6 @@
   <div id="responseMsg" class="text-center mt-3"></div>
 </div>
 
-<script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxI8yc58XtzN1pqbKYUI9cf7Ae2Ry1dyyDkEtPGfJ-pLsXXPXl9Y0mwKjUN3dEsOylH5A/exec"; // استبدل بالرابط الخاص بك
-
-  document.getElementById('carForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    
-    fetch(scriptURL, {
-      method: 'POST',
-      body: data
-    })
-    .then(response => response.json())
-    .then(result => {
-      document.getElementById('responseMsg').innerHTML =
-        `<div class="alert alert-success">✅ ${result.message}</div>`;
-      form.reset();
-    })
-    .catch(error => {
-      document.getElementById('responseMsg').innerHTML =
-        `<div class="alert alert-danger">❌ حدث خطأ: ${error.message}</div>`;
-    });
-  });
-</script>
 
 <script>
   document.getElementById('registrationForm').addEventListener('submit', async function(e) {
